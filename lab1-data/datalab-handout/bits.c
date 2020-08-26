@@ -143,8 +143,20 @@ NOTES:
  *   Rating: 1
  */
 int bitXor(int x, int y) {
-  return 2;
+    /**
+     * x 4 100
+     * y 5 101
+     * ~x 011
+     * ~y 010
+     * ~x & ~y 010
+     * x & y 100
+     * ~(~x & ~y) 101
+     * ~(x&y) 011
+     * ~(~x&~y) & ~(x&y) 001
+     */
+    return ~(~x&~y) & ~(x&y);
 }
+
 /* 
  * tmin - return minimum two's complement integer 
  *   Legal ops: ! ~ & ^ | + << >>
@@ -152,11 +164,9 @@ int bitXor(int x, int y) {
  *   Rating: 1
  */
 int tmin(void) {
-
-  return 2;
-
+    return 0x1 << 31;
 }
-//2
+
 /*
  * isTmax - returns 1 if x is the maximum, two's complement number,
  *     and 0 otherwise 
