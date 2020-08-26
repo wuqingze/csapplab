@@ -1,3 +1,4 @@
+#include <stdio.h>
 /* 
  * CS:APP Data Lab 
  * 
@@ -186,8 +187,12 @@ int isTmax(int x) {
  *   Rating: 2
  */
 int allOddBits(int x) {
-  return 2;
+    int mask = 0xaa;
+    mask = mask +  (mask<<8);
+    mask = mask + (mask<<16);
+    return !((mask&x) ^ mask);
 }
+
 /* 
  * negate - return -x 
  *   Example: negate(1) = -1.
@@ -196,8 +201,9 @@ int allOddBits(int x) {
  *   Rating: 2
  */
 int negate(int x) {
-  return 2;
+    return ~x + 1;
 }
+
 //3
 /* 
  * isAsciiDigit - return 1 if 0x30 <= x <= 0x39 (ASCII codes for characters '0' to '9')
@@ -209,8 +215,18 @@ int negate(int x) {
  *   Rating: 3
  */
 int isAsciiDigit(int x) {
+    return x >= 0x30 && x <=0x39;
+    int m1 = !(x>>4 ^ 0x3);
+    int m2 = !( (x^0x30) ^0xa);
+    int m3 = !( (x^0x30) ^0xb);
+    int m4 = !( (x^0x30) ^0xc);
+    int m5 = !( (x^0x30) ^0xd);
+    int m6 = !( (x^0x30) ^0xe);
+    int m7 = !( (x^0x30) ^0xf);
+    return m1 & ~(m1 | m2 | m3 | m4 | m5 | m6 | m7);
   return 2;
 }
+
 /* 
  * conditional - same as x ? y : z 
  *   Example: conditional(2,4,5) = 4
@@ -219,8 +235,15 @@ int isAsciiDigit(int x) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
-  return 2;
+    int mask = !x;
+    mask = mask | (mask<<1);
+    mask = mask | (mask<<2);
+    mask = mask | (mask<<4);
+    mask = mask | (mask<<8);
+    mask = mask | (mask<<16);
+    return mask&z | ~mask&y;
 }
+
 /* 
  * isLessOrEqual - if x <= y  then return 1, else return 0 
  *   Example: isLessOrEqual(4,5) = 1.
