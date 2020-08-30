@@ -9,9 +9,9 @@ multstore:
 	pushq	%rbx
 	.cfi_def_cfa_offset 16
 	.cfi_offset 3, -16
-	movq	%rdi, %rbx
+	movq	%rdx, %rbx
 	call	mult2@PLT
-	movss	%xmm0, (%rbx)
+	movl	%eax, (%rbx)
 	popq	%rbx
 	.cfi_def_cfa_offset 8
 	ret

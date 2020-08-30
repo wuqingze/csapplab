@@ -37,9 +37,20 @@
 //    *desc = t;
 //}
 
-float mult2(float , float);
+//float mult2(float , float);
+//
+//void multstore(float x, float y, float *desc){
+//    int hello = 1024;
+//    int hello1 = hello + 1;
+//    float t = mult2(x, y);
+//    *desc = t;
+//}
 
-void multstore(float x, float y, float *desc){
-    float t = mult2(x, y);
+int mult2(int , int);
+
+void multstore(int x, int y, int *desc){
+    int hello = 1024;
+    int hello1 = hello + 1;
+    int t = mult2(x, y);
     *desc = t;
 }
